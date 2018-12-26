@@ -1,0 +1,77 @@
+created: 20181225164431758
+modified: 20181226010002490
+tags: Clojure Design/encapsulation
+title: Encapsulation with Clojure
+type: text/vnd.tiddlywiki
+
+Or design by protection and aggregation.
+
+! Object oriented programming languages
+
+Encapsulation is featured in object oriented programming language. It helps designing programs embedding data and coherently in a class. Moreover encapsulation provides a way to hide data behide modifiers (public, private) to prevent read or write access outside of a class.
+
+! In clojure
+
+Obviously one can use a private metadata key on a var to hide it from outside its namespace.
+
+(def  ^{:private true} x 42)
+
+
+But that's not an hidden 42. That's just visibility of var x. Clojure data is always free. There is no mechanism to hide it. Clojure separates data and functions working on them. To achieve this goal, it has to free the data forever. 
+
+Records provide a kind of structural artifact. Still, data is always free, you can always read it and derive it. 
+
+Protocols also provide a kind of aggregate but that's only for functions. There is no data in a protocol.
+When implemented over a record, a protocol is just a tool for saying: hey look how this nice abstraction plugs over concrete data. But data is still here ready to be crunched by any function.
+
+When the language don't provide the tools, the programmer can workaround with discipline and conventions. 
+
+I can design my program in such a way that data is conceptually encapsulated. 
+
+First I write a two protocols to work with data. The first protocol contains functions to navigate the data. The second protocol contains functions to derive the data. Then I implement it over a record. Each time an other namespace needs to navigate or derive data, it has to be through a protocol. I also implement kind of constructor functions that will check some preconditions on the input. Some benefits I found with this kind of design are :
+
+- data is always valid, it becomes difficult to create junk
+
+- high decoupling between data and user of data, ease of change
+
+- there are no navigators scattered all over the code, every navigator is in one place and is reused when needed.
+
+- protocols help writing expressive code with meaningful names related to the domain
+
+- protocols are easy to mock (and safe)
+
+- in repl and tests you can still play with data as usual
+
+- writing protocols helps finding abstractions
+
+- it's easy to revert when it looks overkill.
+
+This structure has a price :
+
+- protocols and records have a cost in term of conciseness
+
+- it doesn't feel like writing clojure code, looks like some oop frustrated programming
+
+Every data must not be hidden behind protocols and strict rules like these. Immutability is powerful enough to protect the data in most case. But immutability doesn't give structure. I found this pattern useful on large codebase where code is messy without apparent structure. I also used it to write top down backed with a mocking approach.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
