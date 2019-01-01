@@ -1,0 +1,31 @@
+created: 20181227001103170
+modified: 20181227174420370
+tags: Clojure Rest
+title: Clojure vs Rest
+type: text/vnd.tiddlywiki
+
+Using Clojure and a REST API have that in common : data is at the heart, there is no encapsulation whatsoever. Implementation is hidden behind a function or a protocol for the former, behind a verb and a URI for the latter. 
+
+Could we design a Clojure program like a RESTful API ?
+
+Let's enumerate the ingredients of REST and try to find its equivalent in Clojure world.
+
+!!! Client Server Architecture
+
+This is application of separation of concerns and [[Liskov substition principle]]
+
+The LSP is implemented either directly with functions or through protocols. In either case it's a stable and public API that is offered. Caller and callee can evolve sparatly. Callew can change its implementation. Caller can change how he handle response or how he makes call (eg. sync, async, )
+
+!!! Stateless
+
+Always true. Caller manage its own state through response handling. The contrary would be ... What that would be ?
+
+!!! Cacheable
+
+In Rest the cache is on the client side. The server responds with cacheable information and the client take future actions based on that. So cache handling is a concern of client. Cache is used to save communication, bytes over the wire.
+But inside software we have the cache on callee side. We use cache to save CPU. Memoized function is a good example. The contrary would be ... What that would be ?
+
+!! Stop the nonsense
+
+I will stop the analogy here because it only made sense in the introduction where I said Clojure and REST were data centric.
+
