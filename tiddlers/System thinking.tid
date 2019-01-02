@@ -30,5 +30,23 @@ Thought : System must ensure its perpetuation. As a mortal organism I am just a 
 
 Systems can be nested. Subsystems may have conflicting goals with overall goal.
 
+A //stock// is a quantifiable value of something (water volume in a bath tub for example).
+A stock receives an //inflow// (the faucet) and outputs an //outflow// (the drain of bathtub). We can increase or decrease flow throughput.
+
+   XXX                                          XXXXX
+  X   X                +-----------+           XX    XXXX
+ XX   XXX  INFLOW      |           |  OUTFLOW  X         XXX
+XX       X------------->   STOCK   +---------->X       XX
+XX     XXX             |           |           X       X
+ XXXXXXX               +-----------+           XX     XX
+                                                XXXXXXX
+           FAUCET         WATER       DRAIN
+           
+Stocks change slowly over time. They act as shock absorbers in systems.
+They allow desynchronization between inflow and outflow : cosume more water in a reservoir than it's raining, earn more money than it's spent thanks to banks.
+There are triggers on stock level : when fridge is empty go to store, when pollution level is to high cease car trafic.
+
+We can see the world a a collection of "feedback processes"
+
 
 
